@@ -6,7 +6,7 @@
 /*   By: msander <msander@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 22:28:20 by msaner-           #+#    #+#             */
-/*   Updated: 2023/03/21 20:32:07 by msander          ###   ########.fr       */
+/*   Updated: 2023/03/21 23:28:03 by msander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,13 @@ int	main(int argc, char *argv[], char **env)
 		{
 			if (count_cmd == 1)
 				execute_in(argv, count_cmd, pipe_fd);
+			if (count_cmd + 1 == argc)
+				execute_out(argv, count_cmd, pipe_fd);
 			else
 				execute_on_pipe(argv, count_cmd, pipe_fd);
 		}
 		else
-		{
-			if(count_cmd + 1 == argc)
-				execute_out(argv, count_cmd, pipe_fd);
 			waitpid(pid, NULL, 0);
-		}
 		count_cmd++;
 	}
 	return (0);
